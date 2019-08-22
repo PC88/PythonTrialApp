@@ -1,3 +1,7 @@
+# Code statements in order or input from the book:
+# "Introduction to Machine Learning with Python" - Andreas C Muller & Sarah Guido
+# a start on research for data science, Peter Cannon(PC)
+# CHAPTER ONE: intro
 from sklearn.datasets import load_iris #in9
 iris_dataset = load_iris() #in9
 
@@ -25,10 +29,10 @@ from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state = 0) #in20
 
 print("x_train shape: {}".format(x_train.shape)) #in21
-print("x_train shape: {}".format(y_train.shape)) #in21
+print("x_train shape: {}".format(y_train.shape)) 
 
 print("x_test shape: {}".format(x_test.shape)) #in22
-print("x_test shape: {}".format(y_test.shape)) #in22
+print("x_test shape: {}".format(y_test.shape)) 
 
 # create dataframe from data in x_train
 # label the columns using the strings in the iris_dataset.feature_news
@@ -40,4 +44,25 @@ from sklearn.neighbors import KNeighborsClassifier
 knn = KNeighborsClassifier(n_neighbors = 1) #in24
 
 knn.fit(x_train, y_train) #in25
+
+x_new = np.array([[5, 2.9, 1, 0.2]])
+print("x_new.shape: {}".format(x_new.shape)) #in26
+
+prediction = knn.predict(x_new)
+print("Prediction: {}".format(prediction))
+print("Predicted target name: {}".format(iris_dataset['target_names'][prediction])) #in27
+
+y_pred = knn.predict(x_test)
+print("Test set prediction:\n {}".format(y_pred)) #in28
+
+print("Test set score: {:.2f}".format(np.mean(y_pred == y_test))) #in29
+
+print("Test set score: {:.2f}".format(knn.score(x_test, y_test))) #in30
+
+x_train, x_test, y_train, y_test = train_test_split(iris_dataset['data'], iris_dataset['target'], random_state = 0)
+knn = KNeighborsClassifier(n_neighbours = 1)
+knn.fit(x_train, y_train)
+print("Test set score: {:.2f}".format(knn.score(x_test, y_test))) #in31
+
+# CHAPTER 2: supervised learning
 
